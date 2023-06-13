@@ -15,7 +15,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div className='container'>
       <div className='image__container'>
-        <Image src={movie.imageUrl} alt={movie.title} width={250} height={350} />
+        <Image src={movie.imageUrl} alt={movie.title} width={250} height={300} />
       </div>
 
       <div className='infos'>
