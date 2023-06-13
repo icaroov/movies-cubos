@@ -1,95 +1,45 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import type { Movie } from '@/app/shared/types'
+
+import { MovieCard } from './components/MovieCard'
+import { Search } from './components/Search'
+
+import styles from './page.module.scss'
+
+const movies: Movie[] = [
+  {
+    id: 1,
+    title: 'O Poderoso Chefão',
+    description:
+      'Filme de 1972 dirigido por Francis Ford Coppola, produzido por Albert S. Ruddy a partir de roteiro de Mario Puzo e Coppola.',
+    rating: 9.2,
+    date: '24 de março de 1972',
+    categories: ['Crime', 'Drama'],
+    imageUrl:
+      'https://images.unsplash.com/photo-1686647211244-915dfbe75a95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+  },
+  {
+    id: 2,
+    title: 'O Poderoso Chefão: O Poderoso II',
+    description:
+      'Filme de 1972 dirigido por Francis Ford Coppola, produzido por Albert S. Ruddy a partir de roteiro de Mario Puzo e Coppola. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem nihil nemo odit, quae, impedit vitae id perferendis temporibus iure ad ratione incidunt placeat dolorum. Architecto vitae aliquam fugit nostrum? Nisi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem nihil nemo odit, quae, impedit vitae id perferendis temporibus iure ad ratione incidunt placeat dolorum. Architecto vitae aliquam fugit nostrum? Nisi.',
+    rating: 9.2,
+    date: '24 de março de 1972',
+    categories: ['Crime', 'Drama', 'Action'],
+    imageUrl:
+      'https://images.unsplash.com/photo-1686647211244-915dfbe75a95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+  },
+]
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+      <Search />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section className={styles.movies__container}>
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </section>
     </main>
   )
 }
