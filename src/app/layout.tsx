@@ -2,8 +2,8 @@ import { Abel } from 'next/font/google'
 
 import './globals.css'
 
-import { Footer } from './components/ui/Footer'
-import { Header } from './components/ui/Header'
+import { Footer } from './components/Footer'
+import { Header } from './components/Header'
 
 const abel = Abel({
   weight: '400',

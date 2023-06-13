@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import styles from './footer.module.scss'
+
+import './footer.scss'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -11,7 +12,7 @@ const Footer = () => {
   )
 
   return (
-    <footer className={styles.footer}>
+    <footer className='footer'>
       <p>
         Feito com ❤️ por {link} - {currentYear}
       </p>

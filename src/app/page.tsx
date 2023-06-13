@@ -3,7 +3,7 @@ import type { Movie } from '@/app/shared/types'
 import { MovieCard } from './components/MovieCard'
 import { Search } from './components/Search'
 
-import styles from './page.module.scss'
+import './page.scss'
 
 const movies: Movie[] = [
   {
@@ -32,10 +32,10 @@ const movies: Movie[] = [
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className='main'>
       <Search />
 
-      <section className={styles.movies__container}>
+      <section className='movies__container'>
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
