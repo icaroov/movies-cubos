@@ -3,10 +3,10 @@ import Image from 'next/image'
 import type { MovieWithMoreInfo } from '@/app/shared/types'
 
 import { MovieDetailsInfo } from './components/MovieDetailsInfo'
-
-import styles from './movieDetails.module.scss'
 import { TagList } from '../TagList'
 import { MovieRating } from '../MovieRating'
+
+import styles from './movieDetails.module.scss'
 
 const details = [
   {
@@ -38,12 +38,12 @@ type MovieDetailsProps = {
 const MovieDetails = ({ movie }: MovieDetailsProps) => {
   return (
     <div className={styles.container}>
-      <div className={styles.top__infos}>
+      <div className={styles.topInfos}>
         <h1>{movie.title}</h1>
         <time title={movie.date}>{movie.date}</time>
       </div>
 
-      <div className={styles.details__container}>
+      <div className={styles.detailsContainer}>
         <div className={styles.details}>
           <section>
             <h3>Sinopse</h3>
@@ -53,7 +53,7 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
           <section>
             <h3>Informações</h3>
 
-            <div className={styles.details__infos}>
+            <div className={styles.detailsInfos}>
               {details.map((detail, index) => (
                 <MovieDetailsInfo key={`${detail.title}--${index}`} title={detail.title} value={detail.value} />
               ))}
@@ -66,7 +66,7 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
           </section>
         </div>
 
-        <div className={styles.image__container}>
+        <div className={styles.imageContainer}>
           <Image src={movie.imageUrl} alt={movie.title} width={300} height={500} />
         </div>
       </div>
