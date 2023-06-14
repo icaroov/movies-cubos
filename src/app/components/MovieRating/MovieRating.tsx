@@ -6,7 +6,7 @@ type MovieRatingProps = {
 }
 
 const MovieRating = ({ rating, className }: MovieRatingProps) => {
-  const ratingWithPercentage = `${rating * 10}%`
+  const ratingWithPercentage = (rating * 10).toFixed(0) + '%'
 
   return <span className={`${styles.rating} ${className}`}>{ratingWithPercentage}</span>
 }

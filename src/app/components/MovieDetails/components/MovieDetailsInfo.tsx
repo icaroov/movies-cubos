@@ -2,7 +2,7 @@ import styles from './movieDetailsInfo.module.scss'
 
 type MovieDetailsInfoProps = {
   title: string
-  value: string
+  value: string | undefined
 }
 
 export const MovieDetailsInfo = ({ title, value }: MovieDetailsInfoProps) => {
