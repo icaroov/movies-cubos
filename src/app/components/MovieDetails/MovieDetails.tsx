@@ -13,8 +13,6 @@ type MovieDetailsProps = {
 }
 
 const MovieDetails = ({ movie }: MovieDetailsProps) => {
-  console.log(movie)
-
   const details = {
     status: {
       title: 'Situação',

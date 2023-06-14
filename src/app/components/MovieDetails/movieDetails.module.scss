@@ -4,8 +4,8 @@
 
   position: relative;
 
-  max-width: 900px;
-  height: 500px;
+  max-width: 980px;
+  height: 100%;
 
   background-color: var(--gray-100);
 
@@ -37,6 +37,7 @@
   display: flex;
 
   .details {
+    height: 100%;
     padding: 0.5rem 1rem;
     overflow-y: auto;
 
@@ -86,6 +87,10 @@
 
   width: 300px;
   height: 100%;
+
+  img {
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 768px) {
@@ -96,6 +101,14 @@
   .detailsContainer {
     flex-direction: column-reverse;
     width: 100%;
+
+    .details {
+      height: 100%;
+      padding: 0.5rem 1rem;
+      overflow-y: auto;
+
+      max-height: 100%;
+    }
   }
 
   .imageContainer {
