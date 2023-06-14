@@ -1,5 +1,5 @@
-type Genre = {
-  id?: number
+export type Genre = {
+  id: number
   name: string
 }
 
@@ -16,6 +16,7 @@ export type MovieFromApi = {
   genres?: Genre[]
   original_language?: string
   runtime?: number
+  genre_ids?: number[]
 }
 
 export type Movie = {

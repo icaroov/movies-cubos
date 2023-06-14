@@ -1,27 +1,31 @@
 import type { Movie, MovieFromApi, MovieWithMoreInfo } from '../shared/types'
 
 import { ENV } from '../shared/constants'
+import { getGenresByIds } from '../services/getGenresByIds'
 
-export const formatMovies = (movies: MovieFromApi[]): Movie[] => {
-  const formatedMovies: Movie[] = movies.map((movie: MovieFromApi) => {
+export const formatMovies = (movies: MovieFromApi[]): Promise<Movie[]> => {
+  const formatedMovies = movies.map(async (movie: MovieFromApi) => {
     const formatedDate = new Date(movie.release_date).toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
     })
 
+    const genresIds = movie.genre_ids || []
+    const genres = await getGenresByIds(genresIds)
+
     return {
       id: movie.id,
       title: movie.title,
       description: movie.overview,
       imageUrl: `${ENV.IMAGE_URL}/${movie.poster_path}`,
-      categories: [],
+      categories: genres.categories,
       rating: movie.vote_average,
       date: formatedDate,
     }
   })
 
-  return formatedMovies
+  return Promise.all(formatedMovies)
 }
 
 export const formatMovieWithMoreInfo = (movie: MovieFromApi): MovieWithMoreInfo => {
