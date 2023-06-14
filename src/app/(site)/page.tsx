@@ -1,9 +1,9 @@
 import type { Movie } from '@/app/shared/types'
 
-import { MovieCard } from './components/MovieCard'
-import { Search } from './components/Search'
+import { Search } from '@/app/components/Search'
+import { MovieCard } from '@/app/components/MovieCard'
 
-import './page.scss'
+import styles from './home.module.scss'
 
 const movies: Movie[] = [
   {
@@ -30,12 +30,12 @@ const movies: Movie[] = [
   },
 ]
 
-export default function Home() {
+const Home = () => {
   return (
-    <main className='main'>
+    <main className={styles.main}>
       <Search />
 
-      <section className='movies__container'>
+      <section className={styles.movies__container}>
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
@@ -43,3 +43,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home

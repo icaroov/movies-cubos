@@ -1,9 +1,9 @@
 import { Abel } from 'next/font/google'
 
-import './globals.css'
+import { Footer } from '@/app/components/Footer'
+import { Header } from '@/app/components/Header'
 
-import { Footer } from './components/Footer'
-import { Header } from './components/Header'
+import './globals.css'
 
 const abel = Abel({
   weight: '400',
@@ -15,7 +15,7 @@ export const metadata = {
   description: 'Um site de filmes topzera',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='pt-br'>
       <body className={abel.className}>
@@ -26,3 +26,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
+export default RootLayout
