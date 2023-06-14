@@ -17,4 +17,4 @@ Implements an webapp that allows users to search for movies and view details abo
 1. Clone the repo
 2. Run `npm install`
 3. Run `npm run dev`
-4. Open `http://localhost:3000` in your browser
+4. Open `http://localhost:3001` in your browser
