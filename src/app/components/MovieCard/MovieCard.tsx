@@ -15,14 +15,14 @@ type MovieCardProps = {
 const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div className={styles.container}>
-      <div className={styles.image__container}>
-        <Image src={movie.imageUrl} alt={movie.title} width={250} height={300} />
+      <div className={styles.imageContainer}>
+        <Image src={movie.imageUrl} alt={movie.title} fill />
       </div>
 
       <div className={styles.infos}>
-        <div className={styles.infos__top}>
+        <div className={styles.infosTop}>
           <Link href={`/movies/${movie.id}`}>
-            <h2 className={styles['infos__top-title']}>{movie.title}</h2>
+            <h2 className={styles.title}>{movie.title}</h2>
           </Link>
 
           <MovieRating className={styles.rating} rating={movie.rating} />

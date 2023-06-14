@@ -15,7 +15,11 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {showBackButton && <p onClick={handleGoBack}>Voltar</p>}
+      {showBackButton && (
+        <p title='Voltar' onClick={handleGoBack}>
+          &#9664;
+        </p>
+      )}
 
       <Link href='/'>
         <span>Movies</span>
