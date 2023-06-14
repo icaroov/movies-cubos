@@ -3,41 +3,38 @@ import Link from 'next/link'
 
 import type { Movie } from '@/app/shared/types'
 
-import './movie-card.scss'
+import { TagList } from '../TagList'
+import { MovieRating } from '../MovieRating'
+
+import styles from './movieCard.module.scss'
 
 type MovieCardProps = {
   movie: Movie
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
-  const ratingWithPercentage = `${movie.rating * 10}%`
-
   return (
-    <div className='container'>
-      <div className='image__container'>
+    <div className={styles.container}>
+      <div className={styles.image__container}>
         <Image src={movie.imageUrl} alt={movie.title} width={250} height={300} />
       </div>
 
-      <div className='infos'>
-        <div className='infos__top'>
+      <div className={styles.infos}>
+        <div className={styles.infos__top}>
           <Link href={`/movies/${movie.id}`}>
-            <h2 className='infos__top-title'>{movie.title}</h2>
+            <h2 className={styles['infos__top-title']}>{movie.title}</h2>
           </Link>
 
-          <span className='infos__top-rating'>{ratingWithPercentage}</span>
+          <MovieRating className={styles.rating} rating={movie.rating} />
         </div>
 
-        <span className='date'>{movie.date}</span>
+        <time title={movie.date} className={styles.date}>
+          {movie.date}
+        </time>
 
-        <p className='description'>{movie.description}</p>
+        <p className={styles.description}>{movie.description}</p>
 
-        <div className='tags'>
-          {movie.categories.map((category) => (
-            <span key={category} className='tag'>
-              {category}
-            </span>
-          ))}
-        </div>
+        <TagList className={styles.tags} items={movie.categories} />
       </div>
     </div>
   )
