@@ -20,7 +20,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang='pt-br'>
       <body className={abel.className}>
         <Header />
-        {children}
+        <main className='container'>{children}</main>
         <Footer />
       </body>
     </html>

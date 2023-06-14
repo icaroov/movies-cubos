@@ -32,15 +32,15 @@ const movies: Movie[] = [
 
 const Home = () => {
   return (
-    <main className={styles.main}>
+    <div className={styles.container}>
       <Search />
 
-      <section className={styles.movies__container}>
+      <section className={styles.moviesContainer}>
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </section>
-    </main>
+    </div>
   )
 }
 

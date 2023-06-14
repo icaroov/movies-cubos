@@ -1,15 +1,8 @@
-.main {
-  display: flex;
-  flex-direction: column;
-
-  max-width: var(--max-width);
-  min-height: 100vh;
-
-  padding: 2rem;
-  margin: 0 auto;
+.container {
+  padding: 2rem 0;
 }
 
-.movies__container {
+.moviesContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;
@@ -20,11 +13,11 @@
 }
 
 @media (max-width: 768px) {
-  .main {
+  .container {
     padding: 1rem;
   }
 
-  .movies__container {
+  .moviesContainer {
     gap: 1.5rem;
   }
 }
