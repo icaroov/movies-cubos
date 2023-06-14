@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 import type { Movie } from '@/app/shared/types'
 
-import { TagList } from '../TagList'
-import { MovieRating } from '../MovieRating'
+import { TagList } from '@/app/components/TagList'
+import { MovieRating } from '@/app/components/MovieRating'
 
 import styles from './movieCard.module.scss'
 
@@ -32,9 +32,13 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           {movie.date}
         </time>
 
-        <p className={styles.description}>{movie.description}</p>
+        {movie.description ? (
+          <p className={styles.description}>{movie.description}</p>
+        ) : (
+          <p className={styles.description}>Sem descrição.</p>
+        )}
 
-        <TagList className={styles.tags} items={movie.categories} />
+        {!!movie.categories?.length && <TagList className={styles.tags} items={movie.categories} />}
       </div>
     </div>
   )
