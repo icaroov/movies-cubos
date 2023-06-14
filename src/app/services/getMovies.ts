@@ -3,13 +3,7 @@ import { ENV } from '@/app/shared/constants'
 
 import { formatMovies } from '@/app/utils/formatMovie'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
-
 export const getMovies = async (query?: string): Promise<Movie[]> => {
-  console.log('apiUrl:', apiUrl)
-  console.log('apiKey:', apiKey)
-
   try {
     const url = query
       ? `${ENV.API_URL}/movie?api_key=${ENV.API_KEY}&language=pt-BR&query=${query}`

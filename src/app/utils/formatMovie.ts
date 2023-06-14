@@ -42,8 +42,8 @@ export const formatMovieWithMoreInfo = (movie: MovieFromApi): MovieWithMoreInfo 
     rating: movie.vote_average,
     date: formatedDate,
     infos: {
-      status: movie.status,
-      language: movie.original_language,
+      status: formatStatus(movie.status),
+      language: formatLanguage(movie.original_language),
       duration: formatTime(movie.runtime),
       budget: formatCurrency(movie.budget),
       revenue: formatCurrency(movie.revenue),
@@ -68,4 +68,36 @@ const formatTime = (minutes: number | undefined) => {
   const mins = minutes % 60
 
   return `${hours}h ${mins}min`
+}
+
+const formatLanguage = (language: string | undefined) => {
+  if (!language) return ''
+
+  switch (language) {
+    case 'en':
+      return 'Inglês'
+    case 'pt':
+      return 'Português'
+    case 'es':
+      return 'Espanhol'
+    default:
+      return language
+  }
+}
+
+const formatStatus = (status: string | undefined) => {
+  if (!status) return ''
+
+  switch (status) {
+    case 'Released':
+      return 'Lançado'
+    case 'Rumored':
+      return 'Rumor'
+    case 'Post Production':
+      return 'Pós-produção'
+    case 'In Production':
+      return 'Em produção'
+    default:
+      return status
+  }
 }
