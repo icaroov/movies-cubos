@@ -1,0 +1,19 @@
+.rating {
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 60px;
+  height: 60px;
+
+  font-size: 1.2rem;
+  color: var(--blue-sky-400);
+  background-color: var(--blue-500);
+  border-radius: 50%;
+
+  border: 3px solid var(--blue-500);
+  outline: 3px solid var(--blue-sky-500);
+  outline-offset: -5px;
+}
