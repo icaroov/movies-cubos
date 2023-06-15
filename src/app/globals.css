@@ -74,7 +74,7 @@ a {
   padding: 1rem 0;
 }
 
-.errorButton {
+.button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
 
@@ -92,8 +92,14 @@ a {
   transition: background-color 0.2s ease-in-out;
 }
 
-.errorButton:hover {
+.button:hover {
   background-color: var(--blue-500);
+}
+
+.button:disabled {
+  background-color: var(--gray-400);
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .spinnerContainer {

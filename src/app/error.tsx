@@ -10,7 +10,7 @@ const Error = ({ error, reset }: ErrorPageProps) => {
     <div className='errorContainer'>
       <h1>Oops!</h1>
       <p>{error.message}</p>
-      <button className='errorButton' onClick={() => reset()}>
+      <button className='button' onClick={() => reset()}>
         Tentar novamente
       </button>
     </div>

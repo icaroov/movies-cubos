@@ -23,6 +23,13 @@ export type MovieFromApi = {
   }
 }
 
+export type MoviesFromApiWithPagination = {
+  page: number
+  results: MovieFromApi[]
+  total_pages: number
+  total_results: number
+}
+
 export type Movie = {
   id?: number
   title: string
@@ -54,4 +61,10 @@ export type Video = {
 export type MovieWithMoreInfo = Movie & {
   infos: Partial<MovieInfo>
   videos?: Video[]
+}
+
+export type MoviesWithPagination = {
+  currentPage: number
+  totalPages: number
+  movies: Movie[]
 }

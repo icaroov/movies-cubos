@@ -11,33 +11,27 @@ import { Pagination } from '@/app/components/Pagination'
 import { getMovies } from '@/app/services/getMovies'
 import useDebounce from '@/app/hooks/useDebounce'
 
-import type { Movie } from '@/app/shared/types'
+import type { Movie, MoviesWithPagination } from '@/app/shared/types'
 
 import styles from './moviesList.module.scss'
 
 type MoviesListProps = {
-  movies: Movie[]
+  data: MoviesWithPagination
 }
 
-const MoviesList = ({ movies: initialData }: MoviesListProps) => {
+const MoviesList = ({ data: initialData }: MoviesListProps) => {
   const [inputValue, setInputValue] = useState('')
-  const [movies, setMovies] = useState<Movie[]>(initialData)
+  const [movies, setMovies] = useState<Movie[]>(initialData.movies)
 
   const debouncedValue = useDebounce(inputValue)
 
   const { data, error, isLoading } = useSWR(debouncedValue ?? null, getMovies)
 
   useEffect(() => {
-    if (debouncedValue.length > 0) {
-      if (data) {
-        setMovies(data)
-      } else {
-        setMovies([])
-      }
-    } else {
-      setMovies(initialData)
-    }
-  }, [data, debouncedValue, initialData])
+    if (!debouncedValue) return
+
+    if (data) setMovies(data.movies)
+  }, [data, debouncedValue])
 
   if (error) {
     return (
@@ -65,7 +59,7 @@ const MoviesList = ({ movies: initialData }: MoviesListProps) => {
           </section>
 
           <div className={styles.paginationContainer}>
-            <Pagination page={1} totalPages={10} />
+            <Pagination currentPage={initialData?.currentPage} totalPages={initialData?.totalPages} />
           </div>
         </>
       )}

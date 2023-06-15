@@ -5,11 +5,11 @@ import { getMovies } from '@/app/services/getMovies'
 import styles from './home.module.scss'
 
 const Home = async () => {
-  const movies = await getMovies()
+  const data = await getMovies()
 
   return (
     <div className={styles.container}>
-      <MoviesList movies={movies} />
+      <MoviesList data={data} />
     </div>
   )
 }
