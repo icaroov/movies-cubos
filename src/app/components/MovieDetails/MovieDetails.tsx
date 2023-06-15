@@ -80,7 +80,7 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
         </div>
       </div>
 
-      {!!movie.videos && (
+      {!!movie.videos && movie.videos?.length > 0 && (
         <div className={styles.videos}>
           <h3>Vídeos</h3>
 

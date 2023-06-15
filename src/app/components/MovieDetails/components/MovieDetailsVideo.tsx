@@ -5,6 +5,8 @@ type MovieDetailsVideoProps = {
 }
 
 const MovieDetailsVideo = ({ video }: MovieDetailsVideoProps) => {
+  if (!video) return null
+
   return <iframe title={video.name} src={`https://www.youtube.com/embed/${video.key}`} allowFullScreen />
 }
 

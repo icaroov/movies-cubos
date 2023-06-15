@@ -52,7 +52,7 @@ type MovieInfo = {
 export type Video = {
   id: string
   key: string
-  name: string
+  name?: string
   site: string
   official: boolean
   size: number

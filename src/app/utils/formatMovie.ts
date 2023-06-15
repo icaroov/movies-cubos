@@ -16,12 +16,12 @@ export const formatMovies = (movies: MovieFromApi[]): Promise<Movie[]> => {
 
     return {
       id: movie.id,
-      title: movie.title,
-      description: movie.overview,
+      title: movie.title || 'Sem título',
+      description: movie.overview || 'Sem descrição',
       imageUrl: `${ENV.IMAGE_URL}/${movie.poster_path || movie.backdrop_path}`,
-      categories: genres.categories,
-      rating: movie.vote_average,
-      date: formatedDate,
+      categories: genres.categories || [],
+      rating: movie.vote_average || 0,
+      date: formatedDate || '',
     }
   })
 
@@ -47,12 +47,12 @@ export const formatMovieWithMoreInfo = (movie: MovieFromApi): MovieWithMoreInfo 
 
   const formatedMovie: MovieWithMoreInfo = {
     id: movie.id,
-    title: movie.title,
-    description: movie.overview,
+    title: movie.title || 'Sem título',
+    description: movie.overview || 'Sem descrição',
     imageUrl: `${ENV.IMAGE_URL}/${movie.poster_path}`,
     categories: genres || [],
-    rating: movie.vote_average,
-    date: formatedDate,
+    rating: movie.vote_average || 0,
+    date: formatedDate || '',
     videos: videos || [],
     infos: {
       status: formatStatus(movie.status),
