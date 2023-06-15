@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   width: 100%;
@@ -11,7 +11,14 @@
   justify-content: center;
   align-items: center;
 
+  flex-wrap: wrap;
+
   gap: 0.5rem;
+
+  span {
+    color: var(--gray-300);
+    margin-bottom: 6px;
+  }
 }
 
 .button {
@@ -19,5 +26,11 @@
 
   &:disabled {
     cursor: not-allowed;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttonsContainer {
+    gap: 3px;
   }
 }

@@ -1,50 +1,67 @@
+import PaginationItem from './components/PaginationItem'
+
 import styles from './pagination.module.scss'
 
 type PaginationProps = {
   currentPage: number | undefined
   totalPages: number | undefined
-  perPage?: number
-  onPageChange?: (page: number) => void
+  onPageChange: (page: number) => void
 }
 
-const Pagination = ({ currentPage = 1, totalPages = 0, perPage = 5, onPageChange }: PaginationProps) => {
-  const lastPage = Math.ceil(totalPages / perPage)
+const siblingsCount = 2
+
+const Pagination = ({ currentPage = 1, totalPages = 0, onPageChange }: PaginationProps) => {
+  const perPage = 20
+
+  // TMDB returns a maximum of 500 pages
+  const lastPage = Math.floor(totalPages / perPage) > 500 ? 500 : Math.floor(totalPages / perPage)
 
   if (lastPage <= 1) return null
 
-  const handlePageChange = (newPage: number) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      onPageChange && onPageChange(newPage)
-    }
-  }
+  const followingPages = Math.min(currentPage + siblingsCount, lastPage)
+
+  const previousPages = currentPage > 1 ? generatePages(currentPage - 1 - siblingsCount, currentPage - 1) : []
+
+  const nextPages = currentPage < lastPage ? generatePages(currentPage, followingPages) : []
 
   return (
-    <div className={styles.container}>
-      <div>
-        <strong>{currentPage}</strong> de <strong>{lastPage}</strong>
-      </div>
-
+    <div role='navigation' aria-label='pagination' className={styles.container}>
       <div className={styles.buttonsContainer}>
-        <button
-          className='button'
-          type='button'
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
+        {/* Render "First item" and "..." if needed */}
+        {currentPage > 1 + siblingsCount && (
+          <>
+            <PaginationItem onPageChange={onPageChange} pageNumber={1} />
 
-        <button
-          className='button'
-          type='button'
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === lastPage}
-        >
-          Próxima
-        </button>
+            {currentPage > 2 + siblingsCount && <span>...</span>}
+          </>
+        )}
+
+        {/* Render previous pages */}
+        {previousPages.length > 0 &&
+          previousPages.map((page) => <PaginationItem key={page} onPageChange={onPageChange} pageNumber={page} />)}
+
+        {/* Render current page */}
+        <PaginationItem onPageChange={onPageChange} pageNumber={currentPage} isCurrent />
+
+        {/* Render next pages */}
+        {nextPages.length > 0 &&
+          nextPages.map((page) => <PaginationItem key={page} onPageChange={onPageChange} pageNumber={page} />)}
+
+        {/* Render "..." and "Last item" if needed */}
+        {currentPage + siblingsCount < lastPage && (
+          <>
+            {currentPage + 1 + siblingsCount < lastPage && <span>...</span>}
+
+            <PaginationItem onPageChange={onPageChange} pageNumber={lastPage} />
+          </>
+        )}
       </div>
     </div>
   )
+}
+
+const generatePages = (from: number, to: number) => {
+  return [...new Array(to - from)].map((_, index) => from + index + 1).filter((page) => page > 0)
 }
 
 export default Pagination

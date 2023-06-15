@@ -3,11 +3,11 @@ import { ENV } from '@/app/shared/constants'
 
 import { formatMovies } from '@/app/utils/formatMovie'
 
-export const getMovies = async (query?: string, page?: number): Promise<MoviesWithPagination> => {
+export const getMovies = async (page?: number, query?: string): Promise<MoviesWithPagination> => {
   try {
     const url = query
-      ? `${ENV.API_URL}/search/movie?query=${query}&api_key=${ENV.API_KEY}&language=pt-BR&include_adult=false`
-      : `${ENV.API_URL}/discover/movie?api_key=${ENV.API_KEY}&language=pt-BR&page=${page || 1}&sort_by=popularity.desc`
+      ? `${ENV.API_URL}/search/movie?query=${query}&api_key=${ENV.API_KEY}&language=pt-BR&page=${page || 1}`
+      : `${ENV.API_URL}/discover/movie?api_key=${ENV.API_KEY}&language=pt-BR&sort_by=popularity.desc&page=${page || 1}`
 
     const response = await fetch(url, {
       next: {

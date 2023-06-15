@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useSWR from 'swr'
 import Image from 'next/image'
 
@@ -11,7 +11,7 @@ import { Pagination } from '@/app/components/Pagination'
 import { getMovies } from '@/app/services/getMovies'
 import useDebounce from '@/app/hooks/useDebounce'
 
-import type { Movie, MoviesWithPagination } from '@/app/shared/types'
+import type { MoviesWithPagination } from '@/app/shared/types'
 
 import styles from './moviesList.module.scss'
 
@@ -21,17 +21,21 @@ type MoviesListProps = {
 
 const MoviesList = ({ data: initialData }: MoviesListProps) => {
   const [inputValue, setInputValue] = useState('')
-  const [movies, setMovies] = useState<Movie[]>(initialData.movies)
+  const [currentPage, setCurrentPage] = useState(initialData?.currentPage ?? 1)
 
   const debouncedValue = useDebounce(inputValue)
 
-  const { data, error, isLoading } = useSWR(debouncedValue ?? null, getMovies)
-
-  useEffect(() => {
-    if (!debouncedValue) return
-
-    if (data) setMovies(data.movies)
-  }, [data, debouncedValue])
+  const { data, error, isLoading } = useSWR(
+    [currentPage, debouncedValue],
+    ([currentPage, debouncedValue]) => getMovies(currentPage, debouncedValue),
+    {
+      initialData,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      refreshWhenOffline: false,
+      refreshWhenHidden: false,
+    }
+  )
 
   if (error) {
     return (
@@ -44,7 +48,7 @@ const MoviesList = ({ data: initialData }: MoviesListProps) => {
 
   return (
     <div className={styles.container}>
-      <Search onChange={(value) => setInputValue(value)} />
+      <Search initialValue={inputValue} onChange={(value) => setInputValue(value)} />
 
       {isLoading ? (
         <div className={styles.spinnerContainer}>
@@ -53,13 +57,13 @@ const MoviesList = ({ data: initialData }: MoviesListProps) => {
       ) : (
         <>
           <section className={styles.moviesContainer}>
-            {movies?.map((movie) => (
+            {data?.movies?.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}
           </section>
 
           <div className={styles.paginationContainer}>
-            <Pagination currentPage={initialData?.currentPage} totalPages={initialData?.totalPages} />
+            <Pagination currentPage={currentPage} totalPages={data?.totalPages} onPageChange={setCurrentPage} />
           </div>
         </>
       )}
