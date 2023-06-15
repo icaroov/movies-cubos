@@ -1,3 +1,6 @@
+'use cliente'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -13,10 +16,17 @@ type MovieCardProps = {
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
+  const [error, setError] = useState(false)
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <Image src={movie.imageUrl} alt={movie.title} fill />
+        <Image
+          src={error ? '/assets/no-image.png' : movie.imageUrl || '/assets/no-image.png'}
+          alt={movie.title}
+          onError={() => setError(true)}
+          fill
+        />
       </div>
 
       <div className={styles.infos}>
