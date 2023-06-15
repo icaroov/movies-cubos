@@ -63,6 +63,39 @@ a {
   flex: 1;
 }
 
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  padding: 1rem 0;
+}
+
+.errorButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+
+  border: none;
+  border-radius: 0.25rem;
+
+  background-color: var(--blue-400);
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.errorButton:hover {
+  background-color: var(--blue-500);
+}
+
 .spinnerContainer {
   position: fixed;
   top: 0;
