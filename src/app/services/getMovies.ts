@@ -6,7 +6,7 @@ import { formatMovies } from '@/app/utils/formatMovie'
 export const getMovies = async (query?: string): Promise<Movie[]> => {
   try {
     const url = query
-      ? `${ENV.API_URL}/movie?api_key=${ENV.API_KEY}&language=pt-BR&query=${query}`
+      ? `${ENV.API_URL}/search/movie?query=${query}&api_key=${ENV.API_KEY}&language=pt-BR`
       : `${ENV.API_URL}/movie/top_rated?api_key=${ENV.API_KEY}&language=pt-BR`
 
     const response = await fetch(url)
