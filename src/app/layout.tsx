@@ -18,6 +18,9 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='pt-br'>
+      <link rel='manifest' href='/manifest.json' />
+      <meta name='theme-color' content='#116193' />
+
       <body className={abel.className}>
         <Header />
         <main className='container'>{children}</main>

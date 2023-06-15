@@ -9,11 +9,7 @@ export const getMovies = async (page?: number, query?: string): Promise<MoviesWi
       ? `${ENV.API_URL}/search/movie?query=${query}&api_key=${ENV.API_KEY}&language=pt-BR&page=${page || 1}`
       : `${ENV.API_URL}/discover/movie?api_key=${ENV.API_KEY}&language=pt-BR&sort_by=popularity.desc&page=${page || 1}`
 
-    const response = await fetch(url, {
-      next: {
-        revalidate: 3600, // 1h
-      },
-    })
+    const response = await fetch(url)
 
     if (!response.ok) {
       throw new Error('Houve um erro ao buscar os filmes.')

@@ -1,21 +1,23 @@
+const path = require('path')
+
 /** @type {import('next').NextConfig} */
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const path = require('path')
 const withPWA = require('next-pwa')({
   dest: 'public',
+  register: true,
+  skipWaiting: true,
   disable: !isProd,
 })
 
-const nextConfig = {
+module.exports = withPWA({
+  swcMinify: true,
+  reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  reactStrictMode: true,
   images: {
     domains: ['image.tmdb.org'],
   },
-}
-
-module.exports = withPWA(nextConfig)
+})
