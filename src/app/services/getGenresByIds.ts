@@ -10,7 +10,7 @@ export const getGenresByIds = async (
     const response = await fetch(`${ENV.API_URL}/genre/movie/list?api_key=${ENV.API_KEY}&language=pt-BR`)
 
     if (!response.ok) {
-      throw 'Houve um erro ao buscar as categorias.'
+      throw new Error('Houve um erro ao buscar as categorias.')
     }
 
     const data = (await response.json()) as { genres: Genre[] }
@@ -20,7 +20,7 @@ export const getGenresByIds = async (
     return { categories: genres }
   } catch (error) {
     if (error instanceof Error) {
-      throw error.message
+      throw new Error(error.message)
     }
 
     throw new Error('Houve um erro ao buscar as categorias.')

@@ -18,7 +18,7 @@ export const formatMovies = (movies: MovieFromApi[]): Promise<Movie[]> => {
       id: movie.id,
       title: movie.title,
       description: movie.overview,
-      imageUrl: `${ENV.IMAGE_URL}/${movie.poster_path}`,
+      imageUrl: `${ENV.IMAGE_URL}/${movie.poster_path || movie.backdrop_path}`,
       categories: genres.categories,
       rating: movie.vote_average,
       date: formatedDate,
@@ -36,6 +36,14 @@ export const formatMovieWithMoreInfo = (movie: MovieFromApi): MovieWithMoreInfo 
   })
 
   const genres = movie.genres?.map((genre) => genre.name)
+  const videos = movie.videos?.results.map((video) => ({
+    id: video.id,
+    key: video.key,
+    name: video.name,
+    site: video.site,
+    official: video.official,
+    size: video.size,
+  }))
 
   const formatedMovie: MovieWithMoreInfo = {
     id: movie.id,
@@ -45,6 +53,7 @@ export const formatMovieWithMoreInfo = (movie: MovieFromApi): MovieWithMoreInfo 
     categories: genres || [],
     rating: movie.vote_average,
     date: formatedDate,
+    videos: videos || [],
     infos: {
       status: formatStatus(movie.status),
       language: formatLanguage(movie.original_language),

@@ -6,7 +6,8 @@ export type Genre = {
 export type MovieFromApi = {
   id?: number
   title: string
-  poster_path: string
+  poster_path?: string
+  backdrop_path?: string
   overview: string
   vote_average: number
   release_date: string
@@ -17,6 +18,9 @@ export type MovieFromApi = {
   original_language?: string
   runtime?: number
   genre_ids?: number[]
+  videos?: {
+    results: Video[]
+  }
 }
 
 export type Movie = {
@@ -38,6 +42,16 @@ type MovieInfo = {
   profit: string
 }
 
+export type Video = {
+  id: string
+  key: string
+  name: string
+  site: string
+  official: boolean
+  size: number
+}
+
 export type MovieWithMoreInfo = Movie & {
   infos: Partial<MovieInfo>
+  videos?: Video[]
 }

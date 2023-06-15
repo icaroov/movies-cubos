@@ -12,7 +12,7 @@ export const getMovies = async (query?: string): Promise<Movie[]> => {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw 'Houve um erro ao buscar os filmes.'
+      throw new Error('Houve um erro ao buscar os filmes.')
     }
 
     const { results } = (await response.json()) as { results: MovieFromApi[] }
@@ -22,7 +22,7 @@ export const getMovies = async (query?: string): Promise<Movie[]> => {
     return movies
   } catch (error) {
     if (error instanceof Error) {
-      throw error.message
+      throw new Error(error.message)
     }
 
     throw new Error('Houve um erro ao buscar os filmes.')

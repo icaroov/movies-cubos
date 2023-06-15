@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
+
+  max-width: 100%;
 }
 
 .tag {
@@ -18,4 +20,10 @@
 
   border-radius: 24px;
   border: 1px solid var(--blue-500);
+}
+
+@media (max-width: 768px) {
+  .tags {
+    max-width: 300px;
+  }
 }
