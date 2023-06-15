@@ -54,7 +54,7 @@ const MoviesList = ({ data: initialData }: MoviesListProps) => {
 
       {isLoading ? (
         <section className={styles.moviesContainer}>
-          <Skeleton className={styles.skeleton} count={20} width={900} height={300} highlightColor='#cac6c6' />
+          <Skeleton className={styles.skeleton} count={20} highlightColor='#cac6c6' />
         </section>
       ) : (
         <>
