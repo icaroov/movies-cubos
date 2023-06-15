@@ -1,6 +1,4 @@
-import { Search } from '@/app/components/Search'
-import { MovieCard } from '@/app/components/MovieCard'
-import { Pagination } from '@/app/components/Pagination'
+import { MoviesList } from '@/app/components/MoviesList'
 
 import { getMovies } from '@/app/services/getMovies'
 
@@ -11,13 +9,7 @@ const Home = async () => {
 
   return (
     <div className={styles.container}>
-      <Search />
-
-      <section className={styles.moviesContainer}>
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </section>
+      <MoviesList movies={movies} />
     </div>
   )
 }
