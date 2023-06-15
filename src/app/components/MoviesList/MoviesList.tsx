@@ -4,6 +4,8 @@ import { useState } from 'react'
 import useSWR from 'swr'
 import Image from 'next/image'
 
+import Skeleton from 'react-loading-skeleton'
+
 import { Search } from '@/app/components/Search'
 import { MovieCard } from '@/app/components/MovieCard'
 import { Pagination } from '@/app/components/Pagination'
@@ -51,9 +53,9 @@ const MoviesList = ({ data: initialData }: MoviesListProps) => {
       <Search initialValue={inputValue} onChange={(value) => setInputValue(value)} />
 
       {isLoading ? (
-        <div className={styles.spinnerContainer}>
-          <div className='spinner' />
-        </div>
+        <section className={styles.moviesContainer}>
+          <Skeleton className={styles.skeleton} count={20} width={900} height={300} highlightColor='#cac6c6' />
+        </section>
       ) : (
         <>
           <section className={styles.moviesContainer}>

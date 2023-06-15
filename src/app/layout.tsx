@@ -3,6 +3,8 @@ import { Abel } from 'next/font/google'
 import { Footer } from '@/app/components/Footer'
 import { Header } from '@/app/components/Header'
 
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import './globals.css'
 
 const abel = Abel({

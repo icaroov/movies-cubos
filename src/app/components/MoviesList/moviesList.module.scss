@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100%;
 
   padding: 1rem 0;
@@ -34,7 +35,14 @@
   justify-content: flex-start;
 
   width: 100%;
+  max-width: 900px;
+
   margin: 2rem 0;
+
+  .skeleton {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .paginationContainer {
