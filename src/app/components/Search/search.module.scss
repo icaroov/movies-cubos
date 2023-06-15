@@ -34,6 +34,10 @@
   .search {
     input {
       font-size: 0.9rem;
+
+      &::placeholder {
+        font-size: 0.9rem;
+      }
     }
   }
 }
