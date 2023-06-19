@@ -21,6 +21,14 @@ Check it out [here](https://movies-cubos-brown.vercel.app/).
 git@github.com:icaroov/movies-cubos.git
 ```
 
-2. Run `npm install`
-3. Run `npm run dev`
-4. Open `http://localhost:3001` in your browser
+2. Create a `.env.local` file in the root directory with this command:
+
+```
+cp .env.example .env.local
+```
+
+3. Fill the `.env.local` file with the required environment variables
+
+4. Run `npm install`
+5. Run `npm run dev`
+6. Open `http://localhost:3001` in your browser
